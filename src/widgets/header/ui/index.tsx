@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import LogoutIcon from "@mui/icons-material/Logout";
-import { Button } from "@mui/material";
-import { usePathname, useRouter } from "next/navigation";
-import { FC } from "react";
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Button } from '@mui/material';
+import { usePathname, useRouter } from 'next/navigation';
+import { FC } from 'react';
 
 export const HeaderButtons: FC = () => {
   const router = useRouter();
@@ -11,6 +11,8 @@ export const HeaderButtons: FC = () => {
 
   const onClick = () => {
     localStorage.removeItem(`token`);
+    sessionStorage.removeItem(`token`);
+
     router.replace(`/login`);
   };
   return (
