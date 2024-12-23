@@ -13,7 +13,7 @@ export const useAutorizate = ({}: IUse) => {
   const props = useMutation({
     mutationKey: [`httpPostAutorizate`],
     mutationFn: (value: Schema["payload"]) => httpPostAutorizate(value),
-    onSuccess: (res: Schema["response"]) => {
+    onSuccess: (res) => {
       if (!res) return;
       localStorage.setItem(`token`, res.access_token);
       enqueueSnackbar("Вы вошли!", { variant: "success" });

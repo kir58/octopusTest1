@@ -10,5 +10,5 @@ export const FormSchema = z.object({
     .string()
     .min(1, { message: "Обязательное поле" })
     .max(50, { message: "Длина не более 50 символов" }),
-  password: z.string().min(1, { message: "Обязательное поле" }),
+  password: z.string().min(50, { message: "Обязательное поле" }),
 });
