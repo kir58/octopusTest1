@@ -1,6 +1,6 @@
 // Если ты это читаешь, то ты молодец! Я тут оставил рабочий код, можешь его взять. Не забудь сказать что додумался посмотреть историю в гите)
 
-import { dateFormatClient } from "@/src/shared/lib/date";
+import { dateFormatClient } from '@/src/shared/lib/date';
 import {
   LinearProgress,
   Table,
@@ -9,10 +9,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from "@mui/material";
-import moment from "moment";
-import { FC } from "react";
-import { useBloggerPosts } from "../api/use-table";
+} from '@mui/material';
+import moment from 'moment';
+import { FC } from 'react';
+import { useBloggerPosts } from '../api/use-table';
+import { Link } from '@/src/shared/ui/Link';
 
 export const TableElement: FC = () => {
   const { data, isLoading } = useBloggerPosts();
@@ -33,17 +34,21 @@ export const TableElement: FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data?.data.map((row: any, index) => (
-              <TableRow>
+            {data?.data.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{moment(row.published_at).format(dateFormatClient)}</TableCell>
+                <TableCell>{row.blogger.title}</TableCell>
+                <TableCell>{row.platform.title}</TableCell>
                 <TableCell>
-                  {moment(row.published_at).format(dateFormatClient)}
+                  <Link
+                    href={row.url}
+                    tooltipProps={{ title: 'Перейти по ссылке' }}
+                    target="_blank"
+                  >
+                    {row.url}
+                  </Link>
                 </TableCell>
-                <TableCell>{row.blogger_title.name}</TableCell>
-                <TableCell>{row.platform_title.name}</TableCell>
-                <TableCell>-</TableCell>
-                <TableCell>
-                  {moment(row.published_at).format(`HH:mm`)}
-                </TableCell>
+                <TableCell>{moment(row.published_at).format(`HH:mm`)}</TableCell>
                 <TableCell>{row.metrics?.views}</TableCell>
               </TableRow>
             ))}
