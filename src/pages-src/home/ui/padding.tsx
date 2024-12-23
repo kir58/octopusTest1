@@ -1,13 +1,12 @@
-import { Pagination } from "@mui/material";
-import { FC, useMemo, useState } from "react";
-import { useBloggerPosts } from "../api/use-table";
-import { useFilter } from "../modal/store";
+import { Pagination } from '@mui/material';
+import { FC, useMemo, useState } from 'react';
+import { useBloggerPosts } from '../api/use-table';
+import { useFilter } from '../modal/store';
 
 export const PaginationElement: FC = () => {
-  const { data, isLoading } = useBloggerPosts();
+  const { data } = useBloggerPosts();
 
   const limit = useFilter((state) => state.limit);
-  const offset = useFilter((state) => state.offset);
   const setOffset = useFilter((state) => state.setOffset);
 
   const [page, setPage] = useState<number>(1);

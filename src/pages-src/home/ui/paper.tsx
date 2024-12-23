@@ -1,9 +1,10 @@
-"use client"
+'use client';
 
-import { Box, Paper, Stack } from "@mui/material";
-import { FC } from "react";
-import { PaginationElement } from "./padding";
-import { TableElement } from "./table";
+import { Box, Paper, Stack } from '@mui/material';
+import { FC } from 'react';
+import { PaginationElement } from './padding';
+import { TableElement } from './table';
+import { Filters } from '@/src/pages-src/home/ui/filters';
 
 const headerHeight = 50;
 
@@ -34,6 +35,9 @@ export const PaperElement: FC = () => {
             overflow: `auto`,
           }}
         >
+          <Box sx={{ margin: '10px' }}>
+            <Filters />
+          </Box>
           <TableElement />
         </Box>
       </Paper>
